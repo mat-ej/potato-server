@@ -1,4 +1,4 @@
-Template for the Read the Docs tutorial
+School cluster how-to
 =======================================
 Quick, to the point, "minimum bs" documentation on how to use computational resources provided by Czech Tech.
 
