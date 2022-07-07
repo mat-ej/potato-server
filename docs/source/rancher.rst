@@ -1,9 +1,9 @@
-Usage
+Rancher
 =====
 
 .. _installation:
 
-Installation
+Kubectl
 ------------
 
 To use Lumache, first install it using pip:
@@ -12,7 +12,7 @@ To use Lumache, first install it using pip:
 
    (.venv) $ pip install lumache
 
-Creating recipes
+Running workloads
 ----------------
 
 To retrieve a list of random ingredients,
