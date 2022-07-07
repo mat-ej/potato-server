@@ -1,11 +1,11 @@
-IDA server (a.k.a. potato)
+IDA server (aka "Potato")
 ===========================
 currently at *147.32.83.225*, *potato.felk.cvut.cz* soon.
 
 Installed software
 ----------------
 
-.. list-table:: sw
+.. list-table::
    :widths: 15 15
 
    * - docker
@@ -20,10 +20,19 @@ Installed software
 
 (Should you need anything else, let me know through github issues `here <https://github.com/mat-ej/potato-server>`_.)
 
+SSH keys
+---------------
+For server access you need to generate your own ssh keypair. Follow instructions here:
+
+https://www.ssh.com/academy/ssh/keygen
+
+choose any algorithm and send me the public key i.e. one with the .pub suffix.
+
 Docker
 ----------------
-Clearly you can set your environment through conda and run your code directly. However, conda often isn't as portable as one would hope.
+Sure, you can easily set your environment through conda and run your code directly. However, conda often isn't as portable as one would hope.
 Most likely outcome when porting a project using pure conda onto clusters is the following process:
+
     #. solving environment for 15 minutes
     #. fails
     #. solving conflicts for 45 minutes
@@ -54,16 +63,20 @@ Hence a better idea might be to use a Dockerfile.
         && pip list
 
 
+Where *requirements.dev* is your typical requirements.txt file.
 
 **NOTE**: pip is a better idea for dockerfiles as conda blows up the image size substantially.
+But conda is doable as well. For more options check the provided links below.
 
 Now we only need to build our dockerfile, tag it as dev environment and then run it.
-The docker run command below attaches the current LOCAL directory *($pwd$)* to */opt* directory INSIDE the docker container.
+The docker run command below attaches the current LOCAL working directory *($pwd$)* to */opt* directory INSIDE the docker container.
 
 .. code-block:: bash
 
     docker build -t dev -f Dockerfile .
-    docker run --rm -it --name run-checks -v $(pwd):/opt -t dev bash
+    docker run  --cpus=8 --memory=32GB --rm -it --name run-checks -v $(pwd):/opt -t dev bash
+
+**NOTE**: We restrict the maximum available resources with --cpus and --memory params. Complete set of options such as gpus... can be found `here <https://docs.docker.com/config/containers/resource_constraints/>`_.
 
 This should open up a bash command line inside the docker container such as this and we can simply run whatever we intended.
 
@@ -71,7 +84,7 @@ This should open up a bash command line inside the docker container such as this
 
     root@0267b5398a62:/opt# python train_mnist.py
 
-
+You can easily set up any IDE for any programming language to use this docker container to run your scripts, this way your dev environment stays consistent and somewhat portable.
 
 **NOTE:** Full docker example for project/dependency management with tests and more:
 
@@ -96,12 +109,20 @@ Hence, whenever you need to run an app where you need more than simple CLI inter
 
 
 PyCharm remote host
---------------------
+--------------------------
+Another option is to use pycharm as a SFTP client:
+**Tools>Deployment>Browse Remote Host**
+
+Add remote host through ssh, sftp there. All else should be straightforward.
+
+.. image:: img/remote_host.png
+  :width: 500
+  :alt: Remote host set up.
 
 
 
 Jetbrains gateway (beta)
---------------------
+--------------------------
 Git clone your project into your home directory on the server and then
 setting up gateway connection should be pretty straightforward.
 
