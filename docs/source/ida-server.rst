@@ -23,7 +23,7 @@ Installed software
 Docker
 ----------------
 Clearly you can set your environment through conda and run your code directly. However, conda often isn't as portable as one would hope.
-Most likely outcome when porting a project using pure conda between clusters is the following process:
+Most likely outcome when porting a project using pure conda onto clusters is the following process:
     #. solving environment for 15 minutes
     #. fails
     #. solving conflicts for 45 minutes
@@ -84,7 +84,7 @@ https://yxtay.github.io/blog/python-environment-package-dependency-management/
 SSH tunnel
 ----------------
 Server is currently firewalled in a way that you can only reach the server through ssh.
-Hence, whenever you need to run an app where you need more than simple CLI interaction e.g. mlflow, you need to "expose" it through a tunnel.
+Hence, whenever you need to run an app where you need more than simple CLI interaction e.g. mlflow, jupyterlab... you need to "expose" it through a tunnel.
 
 **Example:** ssh tunnel for postgres running on the server's localhost:5432. We want to make this postgres accessible on our localhost:1111.
 
@@ -102,4 +102,25 @@ PyCharm remote host
 
 Jetbrains gateway (beta)
 --------------------
+Git clone your project into your home directory on the server and then
+setting up gateway connection should be pretty straightforward.
 
+.. image:: img/jb_gateway.png
+  :width: 500
+  :alt: Jetbrains gateway connection set up
+
+When the connection is set up you should be able to see the following performance monitoring when you click on the conn.
+
+.. image:: img/jb_gateway_perf.png
+  :width: 500
+  :alt: Jetbrains gateway working connection
+
+What I found is that jetbrains often leaves zombie processes such as *"JetBrains/RemoteDev"* running on the server even after stopping the python script and closing connection,
+especially when debugging. Hence you might need to do the following when exiting the remote connection.
+
+.. code-block:: bash
+
+    $ htop
+    $ pkill jetbrains -U uhrinmat
+
+Check if any JetBrains processes running with htop and pkill them with a username specified.
