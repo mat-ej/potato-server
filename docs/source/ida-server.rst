@@ -74,11 +74,11 @@ The docker run command below attaches the current LOCAL working directory *($pwd
 .. code-block:: bash
 
     docker build -t dev -f Dockerfile .
-    docker run  --cpus=8 --memory=32GB --rm -it --name run-checks -v $(pwd):/opt -t dev bash
+    docker run  --cpus=8 --memory=32GB --rm -it --name dev-env -v $(pwd):/opt -t dev bash
 
 **NOTE**: We restrict the maximum available resources with --cpus and --memory params. Complete set of options such as gpus... can be found `here <https://docs.docker.com/config/containers/resource_constraints/>`_.
 
-This should open up a bash command line inside the docker container such as this and we can simply run whatever we intended.
+This should open up a bash command line inside the docker container and we can simply run whatever we intended.
 
 .. code-block:: bash
 
