@@ -133,7 +133,7 @@ setting up gateway connection should be pretty straightforward.
 When the connection is set up you should be able to see the following performance monitoring when you click on the conn.
 
 .. image:: img/jb_gateway_perf.png
-  :width: 500
+  :width: 400
   :alt: Jetbrains gateway working connection
 
 What I found is that jetbrains often leaves zombie processes such as *"JetBrains/RemoteDev"* running on the server even after stopping the python script and closing connection,
