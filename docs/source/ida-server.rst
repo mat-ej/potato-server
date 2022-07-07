@@ -82,7 +82,7 @@ This should open up a bash command line inside the docker container and we can s
 
 .. code-block:: bash
 
-    root@0267b5398a62:/opt# python train_mnist.py
+    root@0267b5398a62:/opt# python train_pytorch.py
 
 You can easily set up any IDE for any programming language to use this docker container to run your scripts, this way your dev environment stays consistent and somewhat portable.
 
