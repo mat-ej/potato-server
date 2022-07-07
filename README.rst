@@ -1,9 +1,6 @@
 Template for the Read the Docs tutorial
 =======================================
+Quick, to the point, "minimum bs" documentation on how to use computational resources provided by Czech Tech.
 
-This GitHub template includes fictional Python library
-with some basic Sphinx docs.
 
-Read the tutorial here:
-
-https://docs.readthedocs.io/en/stable/tutorial/
+https://potato-server.readthedocs.io/en/latest/ida-server.html
