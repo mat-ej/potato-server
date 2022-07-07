@@ -95,11 +95,11 @@ Hence, whenever you need to run an app where you need more than simple CLI inter
 
 
 
-Pycharm remote host
+PyCharm remote host
 --------------------
+
+
 
 Jetbrains gateway (beta)
 --------------------
 
-Add user bash script
---------------------
