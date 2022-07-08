@@ -145,3 +145,77 @@ especially when debugging. Hence you might need to do the following when exiting
     $ pkill jetbrains -U uhrinmat
 
 Check if any JetBrains processes running with htop and pkill them with a username specified.
+
+MLFlow
+--------------------------
+
+https://mlflow.org/ is an open source platform for the machine learning lifecycle.
+
+To use it in your code, simply set environment variable `MLFLOW_TRACKING_URI` to
+
+- `http://host.docker.internal:2222` if you are running in Docker + configure extra hosts for your container `host.docker.internal:host-gateway`
+- `http://localhost:2222` if you are running without the docker
+
+To open the MLFlow UI, port-forward port 2222 to your computer and open `http://localhost:2222`.
+
+Example code snippet:
+
+.. code-block:: python
+
+    import os
+    import mlflow
+
+    # Set env. variable programatically.
+    os.environ['MLFLOW_TRACKING_URI'] = 'http://localhost:2222'
+
+    # Set your experiment name, I recommend one per project per person, e.g. something like "NMLN - peterjung"
+    mlflow.set_experiment('Potato Test')
+
+    # Start run
+    with mlflow.start_run(run_name='Test Run') as run:
+        # Log some things. See MLFlow's documentation for all the possibilities.
+        mlflow.log_metric('metric', 0.22)
+        mlflow.log_param('param', 22)
+
+.. image:: img/mlflow.png
+  :width: 500
+  :alt: MLFlow example
+
+**NOTE:** We are running a (beta) server on Potato, it's considered beta because:
+
+- it's using sqlite database stored as a single file on Potato's disk
+- artifacts (uploaded files) are stored locally on Potato'disk as well
+
+That means there is no backup and you are filling space on Potato. If it becomes a problem, we can deal with a more robust deployment solution.
+
+Deployment repository is https://github.com/nmln-team/mlflow/, there is `/etc/systemd/system/docker-compose-mlflow.service` to start it up with docker automatically as a service.
+
+Syncing files between your localhost and potato
+--------------------------
+
+To copy a single or a few files you can use `scp`.
+
+From potato to localhost:
+
+.. code-block :: bash
+    scp -r "peter@potato:~/projects/nmln-torch/poetry.lock" .
+
+From localhost to potato:
+
+.. code-block :: bash
+    scp -r poetry.lock "peter@potato:~/projects/nmln-torch/poetry.lock"
+
+But to synchronize entire folders with only small changes, rsync will be way faster.
+
+From potato to localhost:
+
+.. code-block :: bash
+    rsync -avzurb --no-perms --del --backup-dir .backup --exclude '.git' "potato":"~/projects/nmln-torch/" .
+
+
+From localhost to potato:
+
+.. code-block :: bash
+    rsync -avzurb --no-perms --del --backup-dir .backup . "potato":"~/projects/nmln-torch/"
+
+With these rsync commands, anything that was deleted or overriden will be backuped in `.backup` directory, so you don't need to worry about accidentaly lossing your files.
