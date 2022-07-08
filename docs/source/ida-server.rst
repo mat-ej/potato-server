@@ -86,6 +86,8 @@ This should open up a bash command line inside the docker container and we can s
 
 You can easily set up any IDE for any programming language to use this docker container to run your scripts, this way your dev environment stays consistent and somewhat portable.
 
+E.G. Pycharm: **CTRL-shift-a -> Switch python interpreter -> Add Interpreter -> Docker -> Image name = dev -> Add**
+
 **NOTE:** Full docker example for project/dependency management with tests and more:
 
 https://eugeneyan.com/writing/setting-up-python-project-for-automation-and-collaboration/#alternatively-use-docker-as-a-dev-environment-instead
