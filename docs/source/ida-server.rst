@@ -193,29 +193,33 @@ Deployment repository is https://github.com/nmln-team/mlflow/, there is `/etc/sy
 Syncing files between your localhost and potato
 --------------------------
 
-To copy a single or a few files you can use `scp`.
+To copy a single or a few files you can use 'scp'.
 
 From potato to localhost:
 
-.. code-block :: bash
+.. code-block:: bash
+
     scp -r "peter@potato:~/projects/nmln-torch/poetry.lock" .
 
 From localhost to potato:
 
-.. code-block :: bash
+.. code-block:: bash
+
     scp -r poetry.lock "peter@potato:~/projects/nmln-torch/poetry.lock"
 
 But to synchronize entire folders with only small changes, rsync will be way faster.
 
 From potato to localhost:
 
-.. code-block :: bash
+.. code-block:: bash
+
     rsync -avzurb --no-perms --del --backup-dir .backup --exclude '.git' "potato":"~/projects/nmln-torch/" .
 
 
 From localhost to potato:
 
-.. code-block :: bash
+.. code-block:: bash
+
     rsync -avzurb --no-perms --del --backup-dir .backup . "potato":"~/projects/nmln-torch/"
 
 With these rsync commands, anything that was deleted or overriden will be backuped in `.backup` directory, so you don't need to worry about accidentaly lossing your files.

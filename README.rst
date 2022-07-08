@@ -4,3 +4,8 @@ Quick, to the point, "minimum bs" documentation on how to use computational reso
 
 
 https://potato-server.readthedocs.io/en/latest/ida-server.html
+
+
+notes:
+-----------
+sphinx-build -a docs/source /tmp/mydocs
