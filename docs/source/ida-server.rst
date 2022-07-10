@@ -26,7 +26,13 @@ For server access you need to generate your own ssh keypair. Follow instructions
 
 https://www.ssh.com/academy/ssh/keygen
 
-choose any algorithm and send me the public key i.e. one with the .pub suffix.
+choose any algorith, for example:
+.. code-block:: bash
+
+    ssh-keygen -t rsa -b 4096
+
+
+(email, name, passphrase ... are not needed). Send me the generated public key e.g. **id_rsa.pub**.
 
 
 SSH config
