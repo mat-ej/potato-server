@@ -27,6 +27,7 @@ For server access you need to generate your own ssh keypair. Follow instructions
 https://www.ssh.com/academy/ssh/keygen
 
 choose any algorith, for example:
+
 .. code-block:: bash
 
     ssh-keygen -t rsa -b 4096
