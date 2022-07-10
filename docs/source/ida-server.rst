@@ -41,7 +41,7 @@ To make our lives easier, we'll add potato into ssh config file **~/.ssh/config*
     Port 22
     IdentityFile ~/.ssh/ida-uhrinmat
 
-The following should then work.
+where *ida-uhrinmat* is your private key. The following should then work.
 
 .. code-block:: bash
 
