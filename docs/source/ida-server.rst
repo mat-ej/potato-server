@@ -28,9 +28,11 @@ https://www.ssh.com/academy/ssh/keygen
 
 choose any algorith, for example:
 
+
 .. code-block:: bash
 
     ssh-keygen -t rsa -b 4096
+
 
 
 (email, name, passphrase ... are not needed). Send me the generated public key e.g. **id_rsa.pub**.
