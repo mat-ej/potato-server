@@ -61,6 +61,8 @@ Hence, whenever you need to run an app where you need more than simple CLI inter
     ssh -N -L 1111:localhost:5432 uhrinmat@potato
 
 
+this keeps the ssh tunnel open until you close the terminal.
+
 Docker
 ----------------
 Sure, you can easily set your environment through conda and run your code directly. However, conda often isn't as portable as one would hope.
