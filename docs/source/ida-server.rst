@@ -28,6 +28,39 @@ https://www.ssh.com/academy/ssh/keygen
 
 choose any algorithm and send me the public key i.e. one with the .pub suffix.
 
+
+SSH config
+-----------------
+To make our lives easier, we'll add potato into ssh config file **~/.ssh/config** ,(create if it is not there) as follows:
+
+.. code-block:: bash
+
+    Host potato
+    HostName 147.32.83.225
+    User uhrinmat
+    Port 22
+    IdentityFile ~/.ssh/ida-uhrinmat
+
+The following should then work.
+
+.. code-block:: bash
+
+    ssh uhrinmat@potato
+
+
+SSH tunnel
+----------------
+Server is currently firewalled in a way that you can only reach the server through ssh.
+Hence, whenever you need to run an app where you need more than simple CLI interaction e.g. mlflow, jupyterlab... you need to "expose" it through a tunnel.
+
+**Example:** ssh tunnel for postgres running on the server's localhost:5432. We want to make this postgres accessible on our localhost:1111.
+
+
+.. code-block:: bash
+
+    ssh -N -L 1111:localhost:5432 uhrinmat@potato
+
+
 Docker
 ----------------
 Sure, you can easily set your environment through conda and run your code directly. However, conda often isn't as portable as one would hope.
@@ -95,19 +128,6 @@ https://eugeneyan.com/writing/setting-up-python-project-for-automation-and-colla
 also a good read for python env management:
 
 https://yxtay.github.io/blog/python-environment-package-dependency-management/
-
-SSH tunnel
-----------------
-Server is currently firewalled in a way that you can only reach the server through ssh.
-Hence, whenever you need to run an app where you need more than simple CLI interaction e.g. mlflow, jupyterlab... you need to "expose" it through a tunnel.
-
-**Example:** ssh tunnel for postgres running on the server's localhost:5432. We want to make this postgres accessible on our localhost:1111.
-
-
-.. code-block:: bash
-
-    ssh -L 1111:localhost:5432 uhrinmat@147.32.83.225
-
 
 
 PyCharm remote host
