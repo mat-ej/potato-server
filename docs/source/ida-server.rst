@@ -1,6 +1,6 @@
 IDA server (aka "Potato")
 ===========================
-currently at *147.32.83.17*, *potato.felk.cvut.cz* soon.
+currently at *147.32.83.171*, *potato.felk.cvut.cz* soon.
 
 Installed software
 ----------------
@@ -45,7 +45,7 @@ To make our lives easier, we'll add potato into ssh config file **~/.ssh/config*
 .. code-block:: bash
 
     Host potato
-    HostName 147.32.83.17
+    HostName 147.32.83.171
     User uhrinmat
     Port 22
     IdentityFile ~/.ssh/ida-uhrinmat
